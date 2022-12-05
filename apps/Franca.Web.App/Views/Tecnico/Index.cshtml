@@ -1,0 +1,75 @@
+﻿@using Franca.Application.Technicals.GetAllTechnicals
+@model List<GetAllTechnicalsDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if (Model.Count != 0)
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Añadir elemento</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Sueldo base</th>
+                <th scope="col">Nombre de sucursal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dto in Model)
+            {
+            <tr>
+                <th scope="row">
+                    <a class="btn btn-outline-info"
+                       asp-controller="Tecnico"
+                       asp-action="ModificarTecnico"
+                       asp-route-idTecnico="@dto.Id">
+                        Ir
+                    </a>
+                </th>
+                <th scope="row">
+                    @Html.Partial("_EliminarTecnico", dto)
+                    <button 
+                        type="button" 
+                        class="btn btn-outline-danger" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modal-eliminarTecnico">
+                      ir
+                    </button>
+                </th>
+                <th scope="row">
+                    @Html.Partial("_AddElementoATecnico", dto)
+                    <button 
+                        type="button" 
+                        class="btn btn-outline-info" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modal-eliminarTecnico">
+                      ir
+                    </button>
+                </th>
+                <td>@dto.Name</td>
+                <td>@dto.Salary</td>
+                <td>@dto.Sucursal.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else 
+{
+<div class="card">
+    <div class="card-header">
+        comenzamos a ver las mujeres
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Sin Registros aun</h5>
+        <p class="card-text">Aun no tiene personas, debes crear una para comenzar</p>
+        <a class="btn btn-outline-dark" asp-area="" asp-controller="Tecnico" asp-action="CrearTecnico">Crear</a>
+    </div>
+</div>    
+}

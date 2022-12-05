@@ -1,0 +1,68 @@
+﻿@using Franca.Application.Elements.GetAllElements
+@using Franca.Application.BranchOffices.GetAllBranchOffices
+@using Franca.Application.Technicals.CreateTechnical
+@model CreateTechnicalCommand
+
+@{
+    ViewData["Title"] = "crearTecnico";
+}
+
+<div class="form-row">
+    <div class="col-md-12">
+        <form method="post" asp-controller="Tecnico" asp-action="CrearTecnico" class="form-group">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!--nombre-->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" type="text" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!--salario-->
+            <div class="form-group">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" type="number" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
+            <!--elementos-->
+            <div class="form-group my-2">
+                <select multiple asp-for="ElementosIds">
+                    @foreach (GetAllElementsDTO vd in ViewData["GetAllElementsDTO"] as List<GetAllElementsDTO>)
+                    {
+                        <option value="@vd.Id">@vd.Name</option>
+                    }
+                </select>
+            </div>
+
+
+            <!--sucursal-->
+            <div class="form-group my-2">
+                <select asp-for="SucursalId">
+                    @foreach (GetAllBranchOfficesDTO vd in ViewData["GetAllBranchOfficesDTO"] as List<GetAllBranchOfficesDTO>)
+                    {
+                        <option value="@vd.Id">@vd.Name</option>
+                    }
+                </select>
+            </div>
+
+
+
+            <div class="container my-2">
+                <div class="row">
+                    <!--enviar formulario-->
+                    <div class="col-sm">
+                        <input type="submit" value="Crear" class="btn btn-outline-dark" />
+                    </div>
+                    <!--regresar a la lista de mensajes-->
+                    <div class="col-sm">
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Tecnico" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

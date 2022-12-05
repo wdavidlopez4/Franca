@@ -1,0 +1,44 @@
+﻿@using Franca.Application.Technicals.GetAllTechnicals
+@model GetAllTechnicalsDTO
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-eliminarTecnico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">eliminar tecnico</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <form method="post" asp-controller="Tecnico" asp-action="AddElementoATecnico" class="form-group">
+
+            <!--id-->
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" value="@Model.Id"/>
+            </div>
+
+            <!--id-->
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" value="@Model.Id"/>
+            </div>
+
+            <div class="container my-2">
+                <div class="row">
+                    <!--enviar formulario-->
+                    <div class="col-sm">
+                        <input type="submit" value="añadir" class="btn btn-outline-danger" />
+                    </div>
+                    <!--regresar a la lista de mensajes-->
+                    <div class="col-sm">
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Tecnico" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

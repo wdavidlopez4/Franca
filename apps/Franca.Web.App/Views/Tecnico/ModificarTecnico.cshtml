@@ -1,0 +1,49 @@
+﻿@using Franca.Application.Technicals.ModifyTechnical
+@using Franca.Application.Technicals.GetTechnical
+@model ModifyTechnicalCommand
+@{
+    ViewData["Title"] = "modificar tecnico";
+    var getTechnicalDTO = ViewData["GetTechnicalDTO"] as GetTechnicalDTO;
+}
+
+<div class="form-row">
+    <div class="col-md-12">
+        <form method="post" asp-controller="Tecnico" asp-action="ModificarTecnico" class="form-group">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!--id-->
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" value="@getTechnicalDTO.Id"/>
+            </div>
+
+            <!--nombre-->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" type="text" class="form-control" placeholder="@getTechnicalDTO.Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!--salario-->
+            <div class="form-group">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" type="number" class="form-control" placeholder="@getTechnicalDTO.Salary"/>
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <!--enviar formulario-->
+                    <div class="col-sm">
+                        <input type="submit" value="Crear" class="btn btn-outline-dark" />
+                    </div>
+                    <!--regresar a la lista de mensajes-->
+                    <div class="col-sm">
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Tecnico" asp-action="Index">cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
